@@ -1,5 +1,5 @@
 const pkg = require('./package')
-
+const apiUrl = 'http://localhost:3000/api/';
 
 module.exports = {
   mode: 'universal',
@@ -30,13 +30,18 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/css/tailwind.css'
+    '~/styles/tailwind.css'
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/firebase',
+    '~/plugins/moment',
+    '~/plugins/vuelidate',
+    '~/plugins/vuesax',
+    '~/plugins/axios'
   ],
 
   /*
@@ -61,6 +66,8 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    baseURL: apiUrl,
+    withCredentials: false
   },
 
   /*

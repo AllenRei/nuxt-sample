@@ -14,8 +14,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { auth } from "firebase";
+import { Component, Vue, Inject } from "vue-property-decorator";
 import { AuthStore } from '~/store/AuthStore';
 
 @Component({
@@ -23,12 +22,13 @@ import { AuthStore } from '~/store/AuthStore';
 })
 export default class extends Vue {
   public store = new AuthStore();
-
+  @Inject('auth') auth: AuthStore;
   public async authorize() {
     const code = this.$route.query.invite as string;
-    await this.$app.auth.authentication();
+    await this.auth.authentication();
     if(code) await this.$app.event.redeemInvite(code)
-    this.$router.push({ name: 'Dashboard' });
+    this.$router.push('/dashboard');
   }
 }
+
 </script>

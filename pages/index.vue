@@ -10,6 +10,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
+// import api from '@nuxtjs/axios';
 
 @Component({
   name: "Indeex"
@@ -23,6 +24,7 @@ export default class extends Vue {
         this.test.kek.name = "kurwa"
       },2000)
     }, 5000)
+    console.log(this.$axios);
   }
 }
 </script>
