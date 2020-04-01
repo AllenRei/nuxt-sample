@@ -1,5 +1,5 @@
 const pkg = require('./package')
-const apiUrl = 'http://localhost:3000/api/';
+const apiUrl = '//api';
 
 module.exports = {
   mode: 'universal',
@@ -24,7 +24,7 @@ module.exports = {
   */
   loading: { color: '#aaa' },
   router: {
-    middleware: []
+    middleware: ['services']
   },
   /*
   ** Global CSS
@@ -41,7 +41,8 @@ module.exports = {
     '~/plugins/moment',
     '~/plugins/vuelidate',
     '~/plugins/vuesax',
-    '~/plugins/axios'
+    '~/plugins/axios',
+    // '~/plugins/services'
   ],
 
   /*

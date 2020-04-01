@@ -10,6 +10,6 @@ interface IAuthResponse {
 }
 export class AuthService {
     authorize(idToken: string) : Promise<IAuthResponse> {
-        return api.post(ROUTE.LOGIN, { token: idToken }).then(res => res.data);
+        return api.$post(ROUTE.LOGIN, { token: idToken })
     }
 }

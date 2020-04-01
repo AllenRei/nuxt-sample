@@ -1,9 +1,8 @@
-
 import { Event } from '~/models/Event';
 import { EventsService } from '~/services/events';
 import { EventId } from '~/models/Event';
 
-export class EventStore {
+export class EventsStore {
     public events: Event[] = [];
 
     private eventService = new EventsService();

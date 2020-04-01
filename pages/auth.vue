@@ -16,17 +16,20 @@
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { AuthStore } from '~/store/AuthStore';
+import { EventsStore } from 'store/EventsStore';
 
 @Component({
-  name: "authentication",
+  name: "Authentication",
 })
 export default class extends Vue {
   public store = new AuthStore();
-  @Inject('auth') auth: AuthStore;
+  @Inject('authStore') auth: AuthStore;
+  @Inject('eventsStore') events: EventsStore
+
   public async authorize() {
     const code = this.$route.query.invite as string;
     await this.auth.authentication();
-    if(code) await this.$app.event.redeemInvite(code)
+    if(code) await this.events.redeemInvite(code)
     this.$router.push('/dashboard');
   }
 }

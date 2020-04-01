@@ -1,14 +1,14 @@
 <template>
   <div id="nuxt-app">
-    <nuxt />
+    <nuxt/>
   </div>
 </template>
 
 <script lang="ts">
-import { AppState } from '~/store/AppState';
-
 export default {
-  name: "DefaultLayout",
-  provide: new AppState(),
+  name: 'DefaultLayout',
+  created() {
+    this._provided = this.$ctx;
+  }
 }
 </script>

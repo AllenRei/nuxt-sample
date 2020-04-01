@@ -3,7 +3,7 @@ const router = new Router();
 const auth = require("../utils/bearer-auth");
 const light = auth({ fast: true });
 
-const { uploadFile } = require("../utils/s3-client");
+const { uploadFile } = require("../services/s3-client");
 
 const upload = require("koa-multer")({ dest: "tmp/" });
 

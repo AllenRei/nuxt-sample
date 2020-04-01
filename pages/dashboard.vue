@@ -20,7 +20,8 @@
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { Event } from "~/models/Event";
 import EventsList from "~/components/dashboard/events-list/EventsList.vue";
-
+import { EventsStore } from '~/store/EventsStore';
+Component.registerHooks(['fetch']);
 @Component({
   name: "dashboard",
   components: {
@@ -28,20 +29,19 @@ import EventsList from "~/components/dashboard/events-list/EventsList.vue";
   }
 })
 export default class Dashboard extends Vue {
+  @Inject('eventsStore') events: EventsStore;
   loading: boolean = false;
-  @Inject('events') events: EventsStore;
+
   startLoading() {
     (<any>this).$vs.loading();
     this.loading = true;
   }
+  async fetch({ $app, $axios }) {
+    console.log(await $axios.get('/test'))
+  }
   stopLoading() {
     (<any>this).$vs.loading.close();
     this.loading = false;
-  }
-  async created() {
-    this.startLoading();
-    await this.events.fetchEvents();
-    this.stopLoading();
   }
   public get eventStore() {
     return this.events;

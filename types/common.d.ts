@@ -1,5 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { AppState } from "@/app.state";
+import {Route} from 'vue-router';
 
 type MongoId = string;
 import Vue, { ComponentOptions } from 'vue'
@@ -13,6 +14,7 @@ declare module 'vue/types/vue' {
   interface Vue {
     $app: AppState
     $v: any
+    $route: Route
   }
 }
 declare module "vue/types/options" {

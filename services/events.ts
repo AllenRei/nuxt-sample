@@ -1,22 +1,23 @@
 
 import * as ROUTE from '~/api/routes';
 // import { ApiClient as api } from '~/api';
-import api from '@nuxtjs/axios';
+import api from '~/api';
 import { EventId, Event } from '~/models/Event';
 import { ChainedCalculation } from '~/models/Calculation';
+
 interface IInviteResponse {
     code: string;
 }
 export class EventsService  {
     public createEvent(event: Event, invites = []): Promise<Event> {
-        return api.post(ROUTE.EVENTS, {
+        return api.$post(ROUTE.EVENTS, {
             ...event,
             invites
-        }).then(res => res.data);
+        });
     }
 
     public getMyEvents(): Promise<Event[]> {
-        return api.get(ROUTE.EVENTS).then(res => res.data);
+        return api().get(ROUTE.EVENTS).then(res => res.data);
     }
 
     public editEvent(id, title, description) {
@@ -30,13 +31,13 @@ export class EventsService  {
         return api.delete(ROUTE.EVENT_BY_ID(id as EventId));
     }
     public calculateEvent(eventId) {
-        return api.get(ROUTE.EVENT_CALCULATE(eventId)).then(res => res.data);
+        return api.$get(ROUTE.EVENT_CALCULATE(eventId));
     }
     public calculateEventLegacy(eventId) : Promise<ChainedCalculation> {
-        return api.get(ROUTE.EVENT_CALCULATE_LEGACY(eventId)).then(res => res.data);
+        return api.$get(ROUTE.EVENT_CALCULATE_LEGACY(eventId));
     }
     public getEventById(eventId : EventId): Promise<Event> {
-        return api.get(ROUTE.EVENT_BY_ID(eventId)).then(res => res.data);
+        return api.$get(ROUTE.EVENT_BY_ID(eventId));
     }
     public countEvents() {
         return api.get(ROUTE.EVENT_COUNT);

@@ -4,30 +4,9 @@
       <h1 class="title">
         cashcrowd-nuxt
       </h1>
-      <p>{{test}}</p>
     </div>
   </section>
 </template>
-<script lang="ts">
-import { Component, Vue, Inject } from "vue-property-decorator";
-// import api from '@nuxtjs/axios';
-
-@Component({
-  name: "Indeex"
-})
-export default class extends Vue {
-  @Inject('test') test;
-  mounted() {
-    setTimeout(() => {
-      this.test.setTitle("Blya")
-      setTimeout(() => {
-        this.test.kek.name = "kurwa"
-      },2000)
-    }, 5000)
-    console.log(this.$axios);
-  }
-}
-</script>
 <style>
 /* Sample `apply` at-rules with Tailwind CSS
 .container {

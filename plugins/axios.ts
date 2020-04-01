@@ -1,3 +1,4 @@
+import { setClient } from "~/api"
 export default function ({ $axios, redirect }) {
   $axios.onRequest(config => {
     console.log('Making request to ' + config.url)
@@ -9,4 +10,6 @@ export default function ({ $axios, redirect }) {
       redirect('/401')
     }
   })
+  console.log('plug')
+  setClient($axios);
 }

@@ -1,4 +1,4 @@
-const { ERRORS } = require("../constants");
+const { ERRORS } = global.constants;
 var jsonHandler = function(code, obj) {
   this.jsonError = obj;
   this.throw(code, obj);

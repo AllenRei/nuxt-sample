@@ -5,12 +5,10 @@ module.exports = {
   loadFrom: (name, path) => {
     // loads modules from dir to global namespace
     let elements = fs.readdirSync(`${global.basepath}/${path}`);
-    /** @type {[string] : Model} */
-    global[name] = {};
-    elements.map(elem => {
+    global[name] = elements.reduce((acc, elem) => {
       let elemName = elem.replace(".js", "");
-      global[name][elemName] = require(`${global.basepath}/${path}/${elem}`) ;
-    });
+      acc[elemName] = require(`${global.basepath}/${path}/${elem}`) ;
+    }, {})
   },
   randomString: length => {
     let value = crypto.randomBytes(length).toString("hex");
